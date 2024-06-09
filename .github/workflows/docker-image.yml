@@ -22,7 +22,7 @@ jobs:
     - name: Copy files and install dependencies
       working-directory: ./src
       run: |
-        cp -r . /src
+        # cp -r . /src
         pip install --no-cache-dir -r requirements.txt
 
     - name: Run training script
