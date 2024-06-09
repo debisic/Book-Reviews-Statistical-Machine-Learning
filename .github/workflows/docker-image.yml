@@ -1,3 +1,32 @@
+# name: Docker Image CI
+
+# on:
+#   push:
+#     branches: [ "main" ]
+#   pull_request:
+#     branches: [ "main" ]
+
+# jobs:
+#   build:
+#     runs-on: ubuntu-latest
+
+#     steps:
+#     - uses: actions/checkout@v4
+#     - name: Build the Docker image
+#       run:  |
+#         echo "A initial message"
+#         apt-get update -y && \
+#         apt-get install -y python3.9 && \
+#         apt-get install -y python3-pip &&\
+#         pip install --upgrade pip 
+#     - working-directory: ./app
+#     - run: |
+#         copy . /app
+#         pip install --no-cache-dir -r requirements.txt
+#         CMD ["python3", "train.py"]
+
+
+
 name: Docker Image CI
 
 on:
@@ -12,19 +41,21 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
-    - name: Build the Docker image
-      run:  |
-        echo "A initial message"
-        apt-get update -y && \
-        apt-get install -y python3.9 && \
-        apt-get install -y python3-pip &&\
-        pip install --upgrade pip 
-    - working-directory: ./app
-    - run: |
-        copy . /app
+    - name: Setup Python
+      run: |
+        echo "An initial message"
+        sudo apt-get update -y
+        sudo apt-get install -y python3.9 python3-pip
+        pip install --upgrade pip
+    - name: Change directory to app
+      working-directory: ./app
+    - name: Copy files and install dependencies
+      run: |
+        cp -r . /app
         pip install --no-cache-dir -r requirements.txt
-        CMD ["python3", "train.py"]
-        
+    - name: Run training script
+      run: |
+        python3 train.py
 
 
 
