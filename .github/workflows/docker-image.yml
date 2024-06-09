@@ -48,7 +48,7 @@ jobs:
         sudo apt-get install -y python3.9 python3-pip
         pip install --upgrade pip
     - name: Change directory to app
-      working-directory: ./app
+      working-directory: ./app/src
     - name: Copy files and install dependencies
       run: |
         cp -r . /app
