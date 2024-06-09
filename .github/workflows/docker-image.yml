@@ -41,21 +41,21 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
+    
     - name: Setup Python
       run: |
         echo "An initial message"
         sudo apt-get update -y
         sudo apt-get install -y python3.9 python3-pip
         pip install --upgrade pip
-    - name: Change directory to app
-      working-directory: ./app/src
+
     - name: Copy files and install dependencies
+      working-directory: ./app/src
       run: |
         cp -r . /app
         pip install --no-cache-dir -r requirements.txt
+
     - name: Run training script
+      working-directory: ./app
       run: |
         python3 train.py
-
-
-
