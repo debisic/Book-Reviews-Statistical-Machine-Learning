@@ -1,10 +1,15 @@
+This book review analysis is an end to end machine learning pipeline project handled as a team of 3 persons, the owner of this repository and the other two in the credits session. The python notebook used for data exploration can be found in the `project_report` folder. The models were trained:
+- DecisionTreeClassifier
+- XGBClassifier
+- RandomForestClassifier
+and the RandomForestClassifier had better performance in training accuracy, precision, recall and f1_score.
+
 # How to run the project!
 
 Make a new folder in your local and clone the repository with this link.
 
 ```
-git clone https://github.com/JLBT10/books_project.git
-
+https://github.com/debisic/google_reads_ML_pipeline.git
 ```
 Get in the books_project directory
 
@@ -62,4 +67,7 @@ docker run -it books
 
 ```
 # NB
-The data analysis notebook is found in the project_report folder 
+You may choose to run the pipeline in the github actions as well, the workflow file is well configured to allow the exploration of this works should the reader not take interest in having the files on their local machine.
+## Credit:
+John-Luc Boatiemele
+Deogratis Allakonoon
