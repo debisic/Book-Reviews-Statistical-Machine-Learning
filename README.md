@@ -1,4 +1,4 @@
-This book review analysis is an end to end machine learning pipeline project handled as a team of 3 persons, the owner of this repository and the other two in the credits session. The python notebook used for data exploration can be found in the `project_report` folder. The models were trained:
+This book review analysis is an end to end machine learning pipeline project handled as a team of 3 persons, the owner of this repository and the other two in the credits session. The python notebook used for data exploration can be found in the `project_report` folder. These following models were used in this work:
 - DecisionTreeClassifier
 - XGBClassifier
 - RandomForestClassifier
@@ -67,7 +67,7 @@ docker run -it books
 
 ```
 # NB
-You may choose to run the pipeline in the github actions as well, the workflow file is well configured to allow the exploration of this works should the reader not take interest in having the files on their local machine.
+The workflow can be managed by running it in the github actions as well, the workflow file is well configured to allow the exploration of this work should the reader not take interest in having the files on their local machine.
 ## Special Credit:
 - John-Luc Boatiemele
 - Deogratis Allakonoon
