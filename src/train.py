@@ -125,7 +125,7 @@ def train(models,metrics,params,X_train,y_train,X_test,y_test,cv):
         os.makedirs('./../runs/')
     except Exception as e:
      print(f"Error creating runs directory: {e}")
-# if not os.path.exists('./../runs/'):
+    # if not os.path.exists('./../runs/'):
     #     os.makedirs('./../runs/')
     # saved_file=sorted([file for file in os.listdir('../runs') if not file.startswith('.')])
 
@@ -217,5 +217,4 @@ def main():
     print(res)
 
 if __name__ == "__main__":
-    main()    ...
-    ...
+    main()
