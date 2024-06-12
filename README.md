@@ -68,6 +68,6 @@ docker run -it books
 ```
 # NB
 You may choose to run the pipeline in the github actions as well, the workflow file is well configured to allow the exploration of this works should the reader not take interest in having the files on their local machine.
-## Credit:
-John-Luc Boatiemele
-Deogratis Allakonoon
+## Special Credit:
+- John-Luc Boatiemele
+- Deogratis Allakonoon
