@@ -1,3 +1,37 @@
+# name: Docker Image CI
+
+# on:
+#   push:
+#     branches: [ "main" ]
+#   pull_request:
+#     branches: [ "main" ]
+
+# jobs:
+#   build:
+#     runs-on: ubuntu-latest
+
+#     steps:
+#     - uses: actions/checkout@v4
+    
+#     - name: Setup Python
+#       run: |
+#         sudo apt-get update -y
+#         sudo apt-get install -y python3.9 python3-pip
+#         pip install --upgrade pip
+
+#     - name: Copy files and install dependencies
+#       working-directory: ./src
+#       run: |
+#         # cp -r . /src
+#         pip install --no-cache-dir -r requirements.txt
+
+#     - name: Run training script
+#       working-directory: ./src
+#       run: |
+#         python3 train.py
+
+
+
 name: Docker Image CI
 
 on:
@@ -22,10 +56,16 @@ jobs:
     - name: Copy files and install dependencies
       working-directory: ./src
       run: |
-        # cp -r . /src
         pip install --no-cache-dir -r requirements.txt
 
     - name: Run training script
       working-directory: ./src
       run: |
         python3 train.py
+
+    - name: Persist runs directory
+      uses: actions/upload-artifact@v3
+      with:
+        name: runs-output
+        path: ./src/runs
+
