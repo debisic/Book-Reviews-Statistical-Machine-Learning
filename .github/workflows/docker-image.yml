@@ -20,12 +20,11 @@ jobs:
         pip install --upgrade pip
 
     - name: Copy files and install dependencies
-      working-directory: ./src
+      working-directory: src
       run: |
-        # cp -r . /src
         pip install --no-cache-dir -r requirements.txt
 
     - name: Run training script
-      working-directory: ./src
+      working-directory: src
       run: |
         python3 train.py
