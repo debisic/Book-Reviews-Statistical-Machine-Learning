@@ -1,150 +1,36 @@
-# name: Docker Image CI
-
-# on:
-#   push:
-#     branches: [ "main" ]
-#   pull_request:
-#     branches: [ "main" ]
-
-# jobs:
-#   build:
-#     runs-on: ubuntu-latest
-
-#     steps:
-#     - uses: actions/checkout@v4
-    
-#     - name: Setup Python
-#       run: |
-#         sudo apt-get update -y
-#         sudo apt-get install -y python3.9 python3-pip
-#         pip install --upgrade pip
-
-#     - name: Copy files and install dependencies
-#       working-directory: ./src
-#       run: |
-#         # cp -r . /src
-#         pip install --no-cache-dir -r requirements.txt
-
-#     - name: Run training script
-#       working-directory: ./src
-#       run: |
-#         python3 train.py
-
-
-
-# name: Docker Image CI
-
-# on:
-#   push:
-#     branches: [ "main" ]
-#   pull_request:
-#     branches: [ "main" ]
-
-# jobs:
-#   build:
-#     runs-on: ubuntu-latest
-
-#     steps:
-#     - uses: actions/checkout@v4
-    
-#     - name: Setup Python
-#       run: |
-#         sudo apt-get update -y
-#         sudo apt-get install -y python3.9 python3-pip
-#         pip install --upgrade pip
-
-#     - name: Copy files and install dependencies
-#       working-directory: ./src
-#       run: |
-#         pip install --no-cache-dir -r requirements.txt
-
-#     - name: Run training script
-#       working-directory: ./src
-#       run: |
-#         python3 train.py
-
-#     - name: Persist runs directory
-#       uses: actions/upload-artifact@v3
-#       with:
-#         name: runs-output
-#         path: ./src/runs
-
-
-
-
-
-# name: Docker Image CI
-
-# on:
-#   push:
-#     branches: [ "main" ]
-#   pull_request:
-#     branches: [ "main" ]
-
-# jobs:
-#   build:
-#     runs-on: ubuntu-latest
-
-#     steps:
-#     - uses: actions/checkout@v4
-    
-#     - name: Setup Python
-#       run: |
-#         sudo apt-get update -y
-#         sudo apt-get install -y python3.9 python3-pip
-#         pip install --upgrade pip
-
-#     - name: Copy files and install dependencies
-#       working-directory: ./src
-#       run: |
-#         pip install --no-cache-dir -r requirements.txt
-
-#     - name: Run training script
-#       working-directory: ./src
-#       run: |
-#         python3 train.py
-
-#     - name: Persist runs directory
-#       uses: actions/upload-artifact@v3
-#       with:
-#         name: runs-output
-#         path: ../runs/
-
-
-
-name: Docker Image CI
+        
+name: Train Model
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ main ]
   pull_request:
-    branches: [ "main" ]
+    branches: [ main ]
 
 jobs:
-  build:
+
+  train:
     runs-on: ubuntu-latest
-
-    steps:
-    - uses: actions/checkout@v4
     
-    - name: Setup Python
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.9'
+        
+    - name: Install dependencies
       run: |
-        sudo apt-get update -y
-        sudo apt-get install -y python3.9 python3-pip
-        pip install --upgrade pip
-
-    - name: Build Docker image
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+        
+    - name: Run training script
       run: |
-        docker build -t my-app .
-
-    - name: Run Docker container
-      run: |
-        docker run -v $(pwd)/runs:/app/runs -e GITHUB_WORKSPACE=${{ github.workspace }} -w /app my-app python train.py
-
-    - name: Persist runs directory
+        mkdir -p runs
+        python src/train.py
+        
+    - name: Upload artifacts
       uses: actions/upload-artifact@v3
       with:
-        name: runs-output
-        path: ./runs/
-
-        
+        name: model-artifacts
+        path: runs/
