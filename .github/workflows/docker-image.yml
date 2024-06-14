@@ -112,7 +112,6 @@
 
 
 
-
 name: Docker Image CI
 
 on:
@@ -146,4 +145,6 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: runs-output
+        path: ./runs/
+
         
