@@ -1,4 +1,4 @@
-name: Run Training Pipeline
+name: ML Pipeline
 
 on: 
   push:
