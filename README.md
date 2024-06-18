@@ -14,7 +14,7 @@ https://github.com/debisic/google_reads_ML_pipeline.git
 Get in the books_project directory
 
 ```
-cd books_project
+cd google_reads_ML_pipeline
 
 ```
 
@@ -67,7 +67,7 @@ docker run -it books
 
 ```
 # NB
-The workflow can be managed by running it in the github actions as well, the workflow file is well configured to allow the exploration of this work should the reader not take interest in having the files on their local machine.
+The workflow can be managed by running it in the github actions as well, the workflow file is well configured to allow the exploration of this work should the reader not take interest in having the files on their local machine. The results can be downloaded from the artifacts session of the Github.
 ## Special Credit:
 - John-Luc Boatiemele
 - Deogratis Allakonoon
