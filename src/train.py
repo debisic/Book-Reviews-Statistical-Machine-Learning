@@ -40,8 +40,7 @@ def processing():
 
     print('**** LOADING THE DATASET **** \n')
 
-    # df=pd.read_csv('./../datasets/books.csv',on_bad_lines='skip')
-    df=pd.read_csv('./datasets/books.csv',on_bad_lines='skip')  #put 18_6_24
+    df=pd.read_csv('./../datasets/books.csv',on_bad_lines='skip')
     df.rename(columns={'  num_pages':'num_pages'},inplace=True)
 
     print('\n **** CREATING CATEGORY CLASSES**** \n')
@@ -53,10 +52,10 @@ def processing():
     train, test= train_test_split(df,test_size=0.2,random_state=42,stratify=df['average_ratings_category'])
 
     # Save train and test
-    train.to_csv('./datasets/train.csv',index=False)
-    test.to_csv('./datasets/test.csv',index=False)
+    train.to_csv('./../datasets/train.csv',index=False)
+    test.to_csv('./../datasets/test.csv',index=False)
 
-    #train=pd.read_csv('datasets/train.csv')ut_
+    #train=pd.read_csv('datasets/train.csv')
     #test=pd.read_csv('datasets/test.csv')
 
     #Columns to be delete 
@@ -120,24 +119,24 @@ def train(models,metrics,params,X_train,y_train,X_test,y_test,cv):
     
     '''
     #Create runs directory if not already created
-    if not os.path.exists('./runs/'):
-        os.makedirs('./runs/')
-    saved_file=sorted([file for file in os.listdir('runs') if not file.startswith('.')])
+    if not os.path.exists('./../runs/'):
+        os.makedirs('./../runs/')
+    saved_file=sorted([file for file in os.listdir('../runs') if not file.startswith('.')])
 
     #Create different saving_dir for different runs
     if len(saved_file)==0:
-        os.mkdir("./runs/exp0")
+        os.mkdir("./../runs/exp0")
         saving_dir='exp0'
     else:
-        saved_file=sorted([file for file in os.listdir('./runs') if not file.startswith('.')])
+        saved_file=sorted([file for file in os.listdir('./../runs') if not file.startswith('.')])
         ordered_list= sorted([int(file.replace('exp','')) for file in saved_file])
         last_number=ordered_list[-1]
-        os.mkdir("./runs/exp{}".format(last_number+1) ) 
+        os.mkdir("./../runs/exp{}".format(last_number+1) ) 
         saving_dir='exp{}'.format(last_number+1)
 
     #Create weights directory for saving weights
-    if not os.path.exists('./runs/{}/weights/'.format(saving_dir)):
-        os.makedirs('./runs/{}/weights/'.format(saving_dir))
+    if not os.path.exists('./../runs/{}/weights/'.format(saving_dir)):
+        os.makedirs('./../runs/{}/weights/'.format(saving_dir))
         
    
     #Create dictionnary to save final results
@@ -168,10 +167,10 @@ def train(models,metrics,params,X_train,y_train,X_test,y_test,cv):
             evaluation(model,saving_dir,model_name,X_test,y_test) #Evaluation on test sets
 
             print('Saving the model in runs/{}'.format(saving_dir))
-            joblib.dump(model, './runs/{}/weights/{}.pkl'.format(saving_dir,model_name)) # Saving model
+            joblib.dump(model, './../runs/{}/weights/{}.pkl'.format(saving_dir,model_name)) # Saving model
 
     results=pd.DataFrame(results)
-    results.to_csv('./runs/{}/train_results.csv'.format(saving_dir,model_name)) # Saving results
+    results.to_csv('./../runs/{}/train_results.csv'.format(saving_dir,model_name)) # Saving results
     return results
 
 
