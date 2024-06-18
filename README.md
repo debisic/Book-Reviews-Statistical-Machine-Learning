@@ -2,7 +2,7 @@ This book review analysis is an end to end machine learning pipeline project han
 - DecisionTreeClassifier
 - XGBClassifier
 - RandomForestClassifier
-and the RandomForestClassifier had better performance in training accuracy, precision, recall and f1_score.
+and the RandomForestClassifier had better performance in training `accuracy`, `precision`, `recall` and `f1_score`.
 
 # How to run the project!
 
