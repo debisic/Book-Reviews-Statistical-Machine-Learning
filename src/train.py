@@ -40,7 +40,8 @@ def processing():
 
     print('**** LOADING THE DATASET **** \n')
 
-    df=pd.read_csv('./../datasets/books.csv',on_bad_lines='skip')
+    # df=pd.read_csv('./../datasets/books.csv',on_bad_lines='skip')
+    df=pd.read_csv('./datasets/books.csv',on_bad_lines='skip')  #put 18_6_24
     df.rename(columns={'  num_pages':'num_pages'},inplace=True)
 
     print('\n **** CREATING CATEGORY CLASSES**** \n')
