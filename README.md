@@ -2,7 +2,12 @@ This book review analysis is an end to end machine learning pipeline project han
 - DecisionTreeClassifier
 - XGBClassifier
 - RandomForestClassifier
-and the RandomForestClassifier had better performance in training `accuracy`, `precision`, `recall` and `f1_score`.
+and the RandomForestClassifier had better performance in training `accuracy`, `precision`, `recall` and `f1_score` according to the results in the bellow table.
+|   Model              |   accuracy_train   |   precision_weighted_train   |   recall_weighted_train   |   f1_weighted_train   |
+|----------------------|--------------------|------------------------------|---------------------------|-----------------------|
+|DecisionTreeClassifier|     0.8494         |            0.8478            |         0.8494            |          0.8481       |
+|XGBClassifier         |     0.8814         |            0.8807            |         0.8814            |          0.8806       |
+|RandomForestClassifier|     0.8931         |            0.8931            |         0.8931            |          0.8926       |
 
 # How to run the project!
 
