@@ -35,12 +35,12 @@ jobs:
     - name: Archive production artifacts
       uses: actions/upload-artifact@v2
       with:
-        name: trained-models
-        path: ../runs/**/weights/*.pkl
-  
-
+          name: trained-models
+          path: ${{ github.workspace }}/runs/**/weights/*.pkl
+      
     - name: Archive training results
       uses: actions/upload-artifact@v2
       with:
-        name: training-results
-        path: ../runs/**/train_results.csv
+          name: training-results
+          path: ${{ github.workspace }}/runs/**/train_results.csv
+
