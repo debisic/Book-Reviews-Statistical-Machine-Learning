@@ -33,7 +33,7 @@ cd google_reads_ML_pipeline
 
 1. Open the Dockerfile and comment the CMD["python3","train.py"] then map with volume on your local pc
 
-2. Build the docker images
+2. Build the docker images, here the image is named `books`
 ```
 
 docker build . -t books -f src/Dockerfile
@@ -46,7 +46,7 @@ docker run -it -v "/host/path":/app books
 
 ```
 
-*/host/path : path is the books_project directory usually like this for a windows machine (c/users/.../books_project)<br>
+*/host/path : path is the local directory that contains the project root folder usually like this for a windows machine (c/users/.../google_reads_ML_pipeline)<br>
 
 4. Once you have started the container, run the train.py script like this and observe the outputs till the end, then exit the container.
 
