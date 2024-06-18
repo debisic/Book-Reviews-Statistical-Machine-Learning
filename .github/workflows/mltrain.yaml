@@ -1,103 +1,42 @@
-name: Train and Output Results
+name: Run Training Pipeline
 
-on:
+on: 
   push:
-    branches: [ dev ]
+   branches: [ dev]
   pull_request:
     branches: [ dev ]
 
 jobs:
+  build:
 
-  train-and-output:
     runs-on: ubuntu-latest
-    
+
     steps:
-    - uses: actions/checkout@v3
-    - name: Set up Python
-      uses: actions/setup-python@v4
+    - uses: actions/checkout@v2
+
+    - name: Set up Python 3.8
+      uses: actions/setup-python@v2
       with:
-        python-version: '3.9'
-        
+        python-version: 3.9
+
     - name: Install dependencies
-      working-directory: ./src
       run: |
         python -m pip install --upgrade pip
-        pip install -r requirements.txt
-        
-    - name: Create runs directory structure
-      working-directory: ./src
-      run: |
-        mkdir -p runs
-        saved_files=$(ls runs | grep -v '^\.') || true
-        if [ -z "$saved_files" ]; then
-          mkdir runs/exp0
-          saving_dir="exp0"
-        else
-          ordered_list=$(ls runs | grep -v '^\.' | sort -n | sed 's/exp//g')
-          last_number=$(echo "$ordered_list" | tail -n 1)
-          new_number=$((last_number + 1))
-          mkdir "runs/exp$new_number"
-          saving_dir="exp$new_number"
-        fi
-        mkdir "runs/$saving_dir/weights"
-        
-    - name: Train and Output Results
-      working-directory: ./src
-      run: |
-        python train.py
-        mv runs ${{ github.workspace }}/
-        
-    - name: Upload artifact
-      uses: actions/upload-artifact@v3
+        pip install -r src/requirements.txt
+
+    - name: Run Training Script
+      run: python src/train.py
+
+    - name: Archive production artifacts
+      uses: actions/upload-artifact@v2
       with:
-        name: train-results
-        path: ${{ github.workspace }}/runs/
+        name: trained-models
+        path: runs/**/weights/*.pkl
 
+    - name: Archive training results
+      uses: actions/upload-artifact@v2
+      with:
+        name: training-results
+        path: runs/**/train_results.csv
 
-
-
-
-
-
-
-
-
-
-
-
-# name: Train and Output Results
-
-# on:
-#   push:
-#     branches: [ dev ]
-#   pull_request:
-#     branches: [ dev ]
-
-# jobs:
-
-#   train-and-output:
-#     runs-on: ubuntu-latest
     
-#     steps:
-#     - uses: actions/checkout@v3
-#     - name: Set up Python
-#       uses: actions/setup-python@v4
-#       with:
-#         python-version: '3.9'
-        
-#     - name: Install dependencies
-#       run: |
-#         python -m pip install --upgrade pip
-#         pip install -r requirements.txt
-        
-#     - name: Train and Output Results
-#       run: |
-#         python src/train.py
-#         mkdir -p ${{ github.workspace }}
-#         mv runs ${{ github.workspace }}/
-        
-#     - name: Upload artifact
-#       uses: actions/upload-artifact@v3
-#       with:
-#         name: train-results
-#         path: ${{ github.workspace }}/runs/
