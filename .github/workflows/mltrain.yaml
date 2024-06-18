@@ -13,6 +13,9 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+    
+    - name: Print working directory
+      run: pwd
 
     - name: Set up Python 3.8
       uses: actions/setup-python@v2
@@ -21,17 +24,21 @@ jobs:
 
     - name: Install dependencies
       run: |
+        pwd
         python -m pip install --upgrade pip
         pip install -r src/requirements.txt
 
     - name: Run Training Script
-      run: python src/mod_train.py
+      run: |
+        pwd
+        python src/mod_train.py
 
     - name: Archive production artifacts
       uses: actions/upload-artifact@v2
       with:
         name: trained-models
         path: runs/**/weights/*.pkl
+  
 
     - name: Archive training results
       uses: actions/upload-artifact@v2
