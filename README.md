@@ -79,6 +79,6 @@ docker run -it books
 ```
 ## Method 3 (Github Actions)
 The workflow can be managed by running it using the github actions as well, the workflow file is well configured to allow the exploration of this work should the reader not take interest in having the files on their local machine. Simply fork this repository and navigate to the Github actions section where the pipeline can be triggered manually. The results can be downloaded from the artifacts session of the Github at the end of the run.
-## Special Credit:
+### Special Credit:
 - John-Luc Boatiemele
 - Deogratis Allakonoon
