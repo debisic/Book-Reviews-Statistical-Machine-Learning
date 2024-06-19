@@ -2,8 +2,8 @@ This book review analysis is an end to end machine learning pipeline project han
 
 - DecisionTreeClassifier
 - XGBClassifier
-- RandomForestClassifier
-and the RandomForestClassifier had better performance in training `accuracy`, `precision`, `recall` and `f1_score` according to the results in the bellow table.
+- RandomForestClassifier,
+which had the best performance in training `accuracy`, `precision`, `recall` and `f1_score` according to the results in the below table.
 
 
 
@@ -22,7 +22,7 @@ Make a new folder in your local and clone the repository with this link.
 ```
 https://github.com/debisic/google_reads_ML_pipeline.git
 ```
-Get in the books_project directory
+Get into the google_reads_ML_pipeline directory using this command,
 
 ```
 cd google_reads_ML_pipeline
@@ -77,8 +77,8 @@ docker build . -t books -f src/Dockerfile
 docker run -it books 
 
 ```
-# NB
-The workflow can be managed by running it in the github actions as well, the workflow file is well configured to allow the exploration of this work should the reader not take interest in having the files on their local machine. The results can be downloaded from the artifacts session of the Github.
+## Method 3 (Github Actions)
+The workflow can be managed by running it using the github actions as well, the workflow file is well configured to allow the exploration of this work should the reader not take interest in having the files on their local machine. Simply fork this repository and navigate to the Github actions section where the pipeline can be triggered manually. The results can be downloaded from the artifacts session of the Github at the end of the run.
 ## Special Credit:
 - John-Luc Boatiemele
 - Deogratis Allakonoon
