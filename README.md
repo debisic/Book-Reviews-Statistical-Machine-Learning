@@ -59,7 +59,7 @@ python3 train.py > ./../project_report/results.txt
 ```
 From that command, All outputs of the train.py will be directed to results.txt inside project_report folder.
 
-With method 1 you have access to the container and the docker is mapped to the books_project directory on your local pc.<br>
+With method 1 you have access to the container and the docker is mapped to the google_reads_ML_pipeline directory on your local pc.<br>
 **You can then easily check the results of training by opening the runs directory on your pc**.
 
 ### Method 2 (Declarative)
